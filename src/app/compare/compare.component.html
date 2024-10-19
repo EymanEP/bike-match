@@ -1,0 +1,9 @@
+<div class="flex flex-col flex-wrap align-middle justify-center items-center overflow-hidden mt-5">
+  <app-compare-chart [motorcycles]="selectedMotorcycles"></app-compare-chart>
+  <app-compare-table [motorcycles]="selectedMotorcycles"></app-compare-table>
+
+  <app-bubble-selected (openModal)="setModal(true)"/>
+  @if (openModal) {
+    <app-motos-motal (closeEmitter)="setModal(false)" />
+  }
+</div>

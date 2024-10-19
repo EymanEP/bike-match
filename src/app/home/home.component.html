@@ -1,0 +1,21 @@
+<app-hero imageSrc="/hero-bg.jpg" imageAlt="Background image that shows a motorcycle">
+  <div
+    class="flex flex-col justify-center align-middle gap-2 text-white h-dvh pb-28">
+    <div class="flex flex-col justify-center text-center mx-5 md:mx-7">
+      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl">Discover. Compare. Ride.</h1>
+      <p class="font-bricolage-grotesque text-xl text-nowrap text-shadow">Your utlimate motorcycle comparison tool</p>
+    </div>
+    <div class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center md:w-full md:px-7">
+      <app-search-input/>
+      @if (selectedTotal > 0) {
+        <div class="w-full p-fluid">
+          <app-search-input/>
+        </div>
+        @if (selectedTotal > 1) {
+          <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit">Compare</p-button>
+        }
+      }
+    </div>
+  </div>
+</app-hero>
+<div class="bg-amber-200 h-dvh"></div>
