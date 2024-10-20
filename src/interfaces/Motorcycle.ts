@@ -1,4 +1,5 @@
 export interface Motorcycle {
+  id?: number;
   name?: string;
   make: string;
   model: string;
@@ -12,14 +13,14 @@ export interface Motorcycle {
   bore_stroke: string;
   valves_per_cylinder?: string;
   fuel_system: string;
-  fuel_control: string;
-  ignition: string;
-  lubrication: string;
+  fuel_control?: string;
+  ignition?: string;
+  lubrication?: string;
   cooling: string;
   gearbox: string;
   transmission: string;
   clutch?: string;
-  frame: string;
+  frame?: string;
   front_suspension: string;
   rear_suspension: string;
   front_wheel_travel?: string;
@@ -35,7 +36,7 @@ export interface Motorcycle {
   total_width: string;
   ground_clearance?: string;
   wheelbase: string;
-  fuel_capacity: string;
+  fuel_capacity?: string;
   starter: string;
   fuel_consumption?: string;
   emission?: string;

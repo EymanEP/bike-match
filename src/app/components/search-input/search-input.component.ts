@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {Motorcycle} from "../../../interfaces/Motorcycle";
 import {FetchMotorcycleService} from "../../services/fetch-motorcycle.service";
 import {SelectedMotorcyclesService} from "../../services/selected-motorcycles.service";
@@ -23,17 +23,34 @@ import {AutoCompleteModule} from "primeng/autocomplete";
       inputId="float-label"
       optionLabel="name"
       placeholder="Type here your motorcycle to compare"
-      [inputStyle]="{'background-color': 'rgba(255, 255, 255, 0)', 'color': 'white', 'border': '2px white solid'}"
+      [inputStyle]="inputStyleString"
     />
   `,
   styles: ``
 })
-export class SearchInputComponent {
+export class SearchInputComponent implements OnInit {
+  @Input() clearInputOnSelect?: boolean;
+  @Input() inputStyle?: 'clear' | 'solid';
+  @Output() onInputSelectChange = new EventEmitter();
   suggestions: any = [];
   selectedMotorcycle: Motorcycle | null = null;
-  lastSelectedMotorcycle: Motorcycle | null = null;
-  fetchMotorcycleService = inject(FetchMotorcycleService);
-  selectedMotorcycleService = inject(SelectedMotorcyclesService);
+  inputStyleString!: Object;
+  private lastSelectedMotorcycle: Motorcycle | null = null;
+  private fetchMotorcycleService = inject(FetchMotorcycleService);
+  private selectedMotorcycleService = inject(SelectedMotorcyclesService);
+
+  ngOnInit() {
+    if (this.inputStyle === undefined) {
+      this.inputStyle = "clear";
+    }
+
+    this.inputStyleString = this.inputStyle === 'clear' ? {
+        'background-color': 'rgba(255, 255, 255, 0)',
+        'color': 'white',
+        'border': '2px white solid'
+      } :
+      {};
+  }
 
   search(event: any) {
     const query = event.query.split(" ");
@@ -53,8 +70,8 @@ export class SearchInputComponent {
           this.suggestions = data.map((item: Motorcycle) => (
             {
               ...item,
-              name: `${item.make} ${item.model} (${item.year
-              })`
+              id: Math.floor(Math.random()),
+              name: `${item.make} ${item.model} (${item.year})`,
             }
           ))
         }
@@ -67,6 +84,12 @@ export class SearchInputComponent {
       this.selectedMotorcycleService.addMotorcycle(this.selectedMotorcycle);
     }
     this.lastSelectedMotorcycle = this.selectedMotorcycle;
+
+    if (this.clearInputOnSelect) {
+      this.selectedMotorcycle = null;
+      this.lastSelectedMotorcycle = null;
+      this.onInputSelectChange.emit();
+    }
   }
 
   onCleared() {

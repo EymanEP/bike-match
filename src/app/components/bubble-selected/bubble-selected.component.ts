@@ -28,12 +28,15 @@ import {NgIf} from "@angular/common";
          flex-col gap-2 p-5 justify-center min-w-64 min-h-44"
       >
         <div class="flex flex-col p-panel-content gap-2 flex-1">
-          @for (item of selectedMotorcycles; track item.name) {
+          @for (item of selectedMotorcycles; track item.id) {
             <p-chip [label]="item.name" removable (onRemove)="removeSelected(item)"/>
           }
         </div>
         <div>
-          <p-button pRipple size="small" rounded label="Compare" raised (onClick)="emitOpenModal()"/>
+          <p-button *ngIf="selectedMotorcycles.length < 2"
+                    pRipple size="small" rounded label="Add" raised
+                    (onClick)="emitOpenModal()"
+          />
         </div>
       </div>
       <p-button

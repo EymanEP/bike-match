@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {RouterModule, RouterOutlet} from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {NavigationEnd, Router, RouterModule, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {SelectedMotorcyclesService} from "./services/selected-motorcycles.service";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,19 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'bike-match';
+  private selectedMotorcycleService = inject(SelectedMotorcyclesService);
+  private router = inject(Router);
+
+  ngOnInit() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects !== '/compare') {
+          this.selectedMotorcycleService.resetAllMotorcycles();
+        }
+      })
+  }
+
 }

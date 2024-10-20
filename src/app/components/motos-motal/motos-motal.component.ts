@@ -5,24 +5,28 @@ import {Subscription} from "rxjs";
 import {SelectedMotorcyclesService} from "../../services/selected-motorcycles.service";
 import {Button} from "primeng/button";
 import {Ripple} from "primeng/ripple";
+import {SearchInputComponent} from "../search-input/search-input.component";
 
 @Component({
   selector: 'app-motos-motal',
   standalone: true,
   imports: [
     Button,
-    Ripple
+    Ripple,
+    SearchInputComponent
   ],
   template: `
     <div
-      class="fixed top-0 left-0 z-[999] bg-black bg-opacity-90 h-dvh w-dvw overflow-hidden px-5 py-10 flex
-      flex-col text-white gap-10 transition-all duration-300">
-      <div class="self-end cursor-pointer" (click)="closeEmitter.emit()">
-        <i class="pi pi-times text-2xl"></i>
-      </div>
-      <div class="h-full flex flex-col gap-5 p-fluid w-[348px] self-center align-middle justify-center">
-        // Create a new input that adds a motorcycle to a visual list and to the service.
-        <p-button pRipple rounded raised label="Compare" (onClick)="onCompare()"/>
+      class="fixed top-0 left-0 z-[980] h-dvh w-dvw overflow-hidden bg-black bg-opacity-40 flex items-center
+      justify-center">
+      <div
+        class="flex flex-col px-4 pb-10 pt-4 text-white gap-10 z-[999] bg-white rounded-2xl shadow-2xl">
+        <div class="self-end cursor-pointer" (click)="closeEmitter.emit()">
+          <i class="pi pi-times text-lg text-gray-700"></i>
+        </div>
+        <div class="h-full flex flex-col gap-5 p-fluid w-[348px] self-center align-middle justify-center">
+          <app-search-input [clearInputOnSelect]="true" inputStyle="solid" (onInputSelectChange)="closeEmitter.emit()"/>
+        </div>
       </div>
     </div>
   `,

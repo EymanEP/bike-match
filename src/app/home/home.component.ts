@@ -26,14 +26,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   ngOnInit() {
-    console.log("HOME")
-
     this.subscription.add(
       this.selectedMotorcycleService.selectedMotorcycles$.subscribe(motorcycles => {
         this.selectedTotal = motorcycles.length;
       })
     )
-    console.log("HOME LIST: ", this.selectedMotorcycleService.getMotorcycles())
   }
 
   ngOnDestroy() {
