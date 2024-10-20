@@ -70,7 +70,7 @@ export class SearchInputComponent implements OnInit {
           this.suggestions = data.map((item: Motorcycle) => (
             {
               ...item,
-              id: Math.floor(Math.random()),
+              id: Math.floor(Math.random() * 1000),
               name: `${item.make} ${item.model} (${item.year})`,
             }
           ))

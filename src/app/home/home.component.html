@@ -1,21 +1,43 @@
 <app-hero imageSrc="/hero-bg.jpg" imageAlt="Background image that shows a motorcycle">
   <div
-    class="flex flex-col justify-start align-middle gap-2 text-white h-dvh max-h-dvh">
+    class="flex flex-col justify-start align-middle gap-4 text-white h-dvh max-h-dvh">
     <div class="flex flex-col justify-center text-center mx-5 md:mx-7">
-      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl">Discover. Compare. Ride.</h1>
-      <p class="font-bricolage-grotesque text-xl text-nowrap text-shadow">Your utlimate motorcycle comparison tool</p>
+      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl leading-none tracking-tight">Discover. Compare.
+        Ride.</h1>
+      <p class="font-bricolage-grotesque text-shadow leading-none tracking-tight">Your utlimate motorcycle comparison
+        tool</p>
+    </div>
+    <div class="flex flex-row self-center justify-center items-center gap-3">
+      <button
+        [ngClass]="compareModality === 'compare' ? 'btn-active' : 'btn'"
+        (click)="changeModality('compare')"
+      >
+        Compare
+      </button>
+      <button
+        [ngClass]="compareModality === 'search' ? 'btn-active' : 'btn'"
+        (click)="changeModality('search')"
+      >
+        Search
+      </button>
     </div>
     <div class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center md:w-full md:px-7">
       <app-search-input/>
-      @if (selectedTotal > 0) {
+      @if (selectedTotal > 0 && compareModality === 'compare') {
         <div class="w-full p-fluid">
           <app-search-input/>
         </div>
-        @if (selectedTotal > 1) {
-          <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit">Compare</p-button>
-        }
+      }
+      @if (selectedTotal > 1 || (compareModality === 'search' && selectedTotal === 1)) {
+        <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit self-center">Compare</p-button>
       }
     </div>
   </div>
 </app-hero>
-<div class="bg-amber-200 h-dvh"></div>
+<div class="bg-amber-200 h-dvh">
+  <div pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
+
+  </div>
+</div>
+
+<p-scrollTop/>

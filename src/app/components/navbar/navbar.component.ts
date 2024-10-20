@@ -4,6 +4,7 @@ import {NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter} from "rxjs";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {Ripple} from "primeng/ripple";
+import {state, style, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-navbar',
@@ -48,7 +49,7 @@ import {Ripple} from "primeng/ripple";
       position: fixed;
       top: 0;
       left: 0;
-      right:0;
+      right: 0;
       margin: 5px 5px 0 5px;
       border-radius: 10px;
     }
@@ -66,7 +67,7 @@ import {Ripple} from "primeng/ripple";
     }
   `
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
   items: MenuItem[] = [];
   currentRoute: string = ''
   isSticky: boolean = false;

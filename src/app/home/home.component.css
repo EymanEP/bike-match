@@ -1,0 +1,21 @@
+button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  @apply px-5 py-1 text-xs leading-tight border-2 text-white font-bold border-white rounded-2xl
+  shadow-2xl tracking-wide uppercase bg-white bg-opacity-30 outline-none md:py-2 md:px-8 md:text-base
+  hover:bg-opacity-40;
+}
+
+.btn-active {
+  @apply px-5 py-1 text-xs leading-tight border-2 text-slate-800 font-bold border-white rounded-2xl
+  shadow-2xl tracking-wide uppercase bg-white outline-none md:py-2 md:px-8 md:text-base hover:bg-slate-200;
+}
+

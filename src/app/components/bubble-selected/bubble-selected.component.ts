@@ -7,6 +7,8 @@ import {ChipModule} from "primeng/chip";
 import {Button} from "primeng/button";
 import {Ripple} from "primeng/ripple";
 import {NgIf} from "@angular/common";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ButtonGroupModule} from "primeng/buttongroup";
 
 @Component({
   selector: 'app-bubble-selected',
@@ -15,7 +17,8 @@ import {NgIf} from "@angular/common";
     ChipModule,
     Button,
     Ripple,
-    NgIf
+    NgIf,
+    ButtonGroupModule
   ],
   template: `
     <div
@@ -24,7 +27,8 @@ import {NgIf} from "@angular/common";
     >
       <div
         *ngIf="showPanel"
-        class="bg-white rounded-lg max-h-80 shadow-lg bubble-panel flex
+        @slideInOut
+        class="bg-white rounded-lg max-h-80 shadow-lg flex
          flex-col gap-2 p-5 justify-center min-w-64 min-h-44"
       >
         <div class="flex flex-col p-panel-content gap-2 flex-1">
@@ -32,10 +36,13 @@ import {NgIf} from "@angular/common";
             <p-chip [label]="item.name" removable (onRemove)="removeSelected(item)"/>
           }
         </div>
-        <div>
+        <div class="flex flex-row gap-5">
           <p-button *ngIf="selectedMotorcycles.length < 2"
                     pRipple size="small" rounded label="Add" raised
                     (onClick)="emitOpenModal()"
+          />
+          <p-button pRipple size="small" rounded raised
+                    label="Compare" (onClick)="newComparison()"
           />
         </div>
       </div>
@@ -48,22 +55,18 @@ import {NgIf} from "@angular/common";
       />
     </div>
   `,
-  styles: `
-    .bubble-panel {
-      animation: slideup 0.3s ease-out;
-    }
-
-    @keyframes slideup {
-      from {
-        transform: translateY(70%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-  `
+  styles: ``,
+  animations: [
+    trigger('slideInOut', [
+      state('void', style({opacity: 0, transform: 'TranslateY(20%)'})),
+      transition(":enter", [
+        animate('300ms ease-out', style({opacity: 1, transform: 'TranslateY(0)'})),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({opacity: 0, transform: 'TranslateY(20%)'}))
+      ])
+    ])
+  ]
 })
 export class BubbleSelectedComponent implements OnInit, OnDestroy {
   @Output() openModal: EventEmitter<void> = new EventEmitter();
@@ -95,5 +98,9 @@ export class BubbleSelectedComponent implements OnInit, OnDestroy {
 
   removeSelected(selected: Motorcycle) {
     this.selectedMotorcycleService.removeMotorcycle(selected);
+  }
+
+  newComparison() {
+    window.location.reload();
   }
 }

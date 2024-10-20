@@ -26,28 +26,42 @@ export class CompareTableComponent implements OnInit {
   comparisonRows: any[] = [];
 
   ngOnInit() {
-    const firstMoto = this.motorcycles[0];
-    const secMotoc = this.motorcycles[1];
+    if (this.motorcycles.length === 1) {
+      const moto = this.motorcycles[0];
 
-    this.cols = [
-      {field: 'property', header: 'Property'},
-      {field: 'firstMoto', header: firstMoto.name},
-      {field: "secMoto", header: secMotoc.name}
-    ]
+      this.cols = [
+        {field: 'property', header: 'Property'},
+        {field: 'firstMoto', header: moto.name},
+      ]
 
-    this.comparisonRows = this.generateComparisons(firstMoto, secMotoc);
+      this.comparisonRows = this.generateComparisons(moto);
+    } else {
+      const firstMoto = this.motorcycles[0];
+      const secMotoc = this.motorcycles[1];
+
+      this.cols = [
+        {field: 'property', header: 'Property'},
+        {field: 'firstMoto', header: firstMoto.name},
+        {field: "secMoto", header: secMotoc.name}
+      ]
+
+      this.comparisonRows = this.generateComparisons(firstMoto, secMotoc);
+    }
   }
 
-  generateComparisons(first: Motorcycle, second: Motorcycle) {
+  generateComparisons(first: Motorcycle, second?: Motorcycle) {
     const comparisonData: any[] = [];
     (Object.keys(first) as Array<keyof Motorcycle>).forEach((key) => {
-      comparisonData.push(
-        {
-          property: this.formatPropertyName(key),
-          firstMoto: first[key],
-          secMoto: second[key]
-        }
-      )
+      if (key !== 'id') {
+
+        comparisonData.push(
+          {
+            property: this.formatPropertyName(key),
+            firstMoto: first[key],
+            secMoto: second ? second[key] : 'N/A'
+          }
+        )
+      }
     })
 
     return comparisonData;

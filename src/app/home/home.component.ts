@@ -6,6 +6,9 @@ import {SearchInputComponent} from "../components/search-input/search-input.comp
 import {Button} from "primeng/button";
 import {Ripple} from "primeng/ripple";
 import {HeroComponent} from "../components/hero/hero.component";
+import {ScrollTopModule} from "primeng/scrolltop";
+import {NgClass} from "@angular/common";
+import {AnimateOnScrollModule} from "primeng/animateonscroll";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +18,9 @@ import {HeroComponent} from "../components/hero/hero.component";
     Button,
     Ripple,
     HeroComponent,
+    ScrollTopModule,
+    NgClass,
+    AnimateOnScrollModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -23,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   selectedMotorcycleService = inject(SelectedMotorcyclesService);
   router = inject(Router);
   selectedTotal: number = 0;
+  compareModality: 'compare' | 'search' = 'compare';
   private subscription = new Subscription();
 
   ngOnInit() {
@@ -38,8 +45,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onCompare() {
-    if (this.selectedMotorcycleService.getMotorcycles().length === 2) {
+    if (this.selectedMotorcycleService.getMotorcycles().length >= 1) {
       this.router.navigate(['/compare'])
     }
+  }
+
+  changeModality(modality: 'compare' | 'search') {
+    this.compareModality = modality;
   }
 }
