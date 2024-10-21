@@ -9,6 +9,7 @@ import {HeroComponent} from "../components/hero/hero.component";
 import {ScrollTopModule} from "primeng/scrolltop";
 import {NgClass} from "@angular/common";
 import {AnimateOnScrollModule} from "primeng/animateonscroll";
+import {MatCardComponent} from "../components/mat-card/mat-card.component";
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ import {AnimateOnScrollModule} from "primeng/animateonscroll";
     ScrollTopModule,
     NgClass,
     AnimateOnScrollModule,
+    MatCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

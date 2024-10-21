@@ -4,7 +4,6 @@ import {NavigationEnd, Router, RouterLink} from "@angular/router";
 import {filter} from "rxjs";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {Ripple} from "primeng/ripple";
-import {state, style, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-navbar',

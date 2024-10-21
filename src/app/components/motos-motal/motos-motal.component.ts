@@ -19,14 +19,18 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   template: `
     <div
       class="fixed top-0 left-0 z-[980] h-dvh w-dvw overflow-hidden bg-black bg-opacity-40 flex items-center
-      justify-center">
+      justify-center px-2">
       <div
         @fadeInOut
-        class="flex flex-col px-4 pb-10 pt-4 text-white gap-10 z-[999] bg-white rounded-2xl shadow-2xl">
-        <div class="self-end cursor-pointer" (click)="close()">
-          <i class="pi pi-times text-lg text-gray-700"></i>
+        class="flex flex-col px-4 pb-10 pt-4 text-white gap-10 z-[999] bg-white rounded-2xl shadow-2xl w-full md:w-auto">
+        <div class="flex flex-row justify-between items-center">
+          <h3 class="text-slate-800">Add new motorcycle</h3>
+          <div class="cursor-pointer" (click)="close()">
+            <i class="pi pi-times text-lg text-gray-700"></i>
+          </div>
         </div>
-        <div class="h-full flex flex-col gap-5 p-fluid w-[348px] self-center align-middle justify-center">
+        <div
+          class="h-full w-full p-fluid self-center align-middle md:w-[480px]">
           <app-search-input [clearInputOnSelect]="true" inputStyle="solid" (onInputSelectChange)="close()"/>
         </div>
       </div>
@@ -68,12 +72,8 @@ export class MotosMotalComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onCompare() {
-    console.log(this.selectedMotorcycleService.getMotorcycles())
-    this.closeEmitter.emit();
-  }
-
   close() {
     this.closeEmitter.emit();
+    window.location.reload();
   }
 }

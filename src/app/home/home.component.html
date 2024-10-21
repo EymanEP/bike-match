@@ -1,10 +1,13 @@
 <app-hero imageSrc="/hero-bg.jpg" imageAlt="Background image that shows a motorcycle">
   <div
-    class="flex flex-col justify-start align-middle gap-4 text-white h-dvh max-h-dvh">
-    <div class="flex flex-col justify-center text-center mx-5 md:mx-7">
-      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl leading-none tracking-tight">Discover. Compare.
+    class="flex flex-col justify-start pt-20 align-middle gap-4 text-white h-dvh max-h-dvh md:gap-16">
+    <div class="flex flex-col justify-center text-center gap-5 mx-5 md:mx-7">
+      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl leading-none tracking-tight lg:text-8xl">Discover.
+        Compare.
         Ride.</h1>
-      <p class="font-bricolage-grotesque text-shadow leading-none tracking-tight">Your utlimate motorcycle comparison
+      <p class="font-bricolage-grotesque text-shadow leading-none tracking-tight md:text-3xl">Your utlimate
+        motorcycle
+        comparison
         tool</p>
     </div>
     <div class="flex flex-row self-center justify-center items-center gap-3">
@@ -21,7 +24,8 @@
         Search
       </button>
     </div>
-    <div class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center md:w-full md:px-7">
+    <div class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center max-w-[500px]
+    md:w-full md:px-7 ">
       <app-search-input/>
       @if (selectedTotal > 0 && compareModality === 'compare') {
         <div class="w-full p-fluid">
@@ -29,15 +33,25 @@
         </div>
       }
       @if (selectedTotal > 1 || (compareModality === 'search' && selectedTotal === 1)) {
-        <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit self-center">Compare</p-button>
+        <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit self-center"
+                  [label]="compareModality === 'search' ? 'Search' : 'Compare'"
+        />
       }
     </div>
   </div>
 </app-hero>
-<div class="bg-amber-200 h-dvh">
-  <div pAnimateOnScroll enterClass="fadein" leaveClass="fadeout">
-
+<section pAnimateOnScroll enterClass="zoomin" leaveClass="fadeout" class="h-auto flex items-center">
+  <div class="py-20 px-5">
+    <app-mat-card
+      [imageProps]="{url: 'harley-davidson-passage-unsplash.jpg', alt: 'A guy sitting in a motorcycle looking at the scenery'}">
+      <div class="flex flex-col gap-4">
+        <h1>Discover Your Ideal Ride</h1>
+        <p>With our powerful comparison tool, you can <b>quickly compare or search different motorcycles</b>. Whether
+          you're a seasoned rider or a first-time buyer, we make it easy to find
+          the perfect motorcycle for your needs.</p>
+      </div>
+    </app-mat-card>
   </div>
-</div>
+</section>
 
 <p-scrollTop/>
