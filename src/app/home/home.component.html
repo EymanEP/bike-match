@@ -1,14 +1,22 @@
-<app-hero imageSrc="/hero-bg.jpg" imageAlt="Background image that shows a motorcycle">
+<app-hero
+  id="hero"
+  imageSrc="/hero-bg.jpg"
+  imageAlt="Background image that shows a motorcycle"
+>
   <div
-    class="flex flex-col justify-start pt-20 align-middle gap-4 text-white h-dvh max-h-dvh md:gap-16">
+    class="flex flex-col justify-start pt-20 align-middle gap-4 text-white h-dvh max-h-dvh md:gap-16"
+  >
     <div class="flex flex-col justify-center text-center gap-5 mx-5 md:mx-7">
-      <h1 class="font-bricolage-grotesque text-6xl text-shadow-xl leading-none tracking-tight lg:text-8xl">Discover.
-        Compare.
-        Ride.</h1>
-      <p class="font-bricolage-grotesque text-shadow leading-none tracking-tight md:text-3xl">Your utlimate
-        motorcycle
-        comparison
-        tool</p>
+      <h1
+        class="font-bricolage-grotesque text-6xl text-shadow-xl leading-none tracking-tight lg:text-8xl"
+      >
+        Discover. Compare. Ride.
+      </h1>
+      <p
+        class="font-bricolage-grotesque text-shadow leading-none tracking-tight md:text-3xl"
+      >
+        Your utlimate motorcycle comparison tool
+      </p>
     </div>
     <div class="flex flex-row self-center justify-center items-center gap-3">
       <button
@@ -24,34 +32,52 @@
         Search
       </button>
     </div>
-    <div class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center max-w-[500px]
-    md:w-full md:px-7 ">
-      <app-search-input/>
+    <div
+      class="w-[348px] p-fluid self-center flex flex-col gap-2 justify-center max-w-[500px] md:w-full md:px-7"
+    >
+      <app-search-input />
       @if (selectedTotal > 0 && compareModality === 'compare') {
-        <div class="w-full p-fluid">
-          <app-search-input/>
-        </div>
-      }
-      @if (selectedTotal > 1 || (compareModality === 'search' && selectedTotal === 1)) {
-        <p-button pRipple [rounded]="true" (onClick)="onCompare()" class="w-fit self-center"
-                  [label]="compareModality === 'search' ? 'Search' : 'Compare'"
-        />
+      <div class="w-full p-fluid">
+        <app-search-input />
+      </div>
+      } @if (selectedTotal > 1 || (compareModality === 'search' &&
+      selectedTotal=== 1)) {
+      <p-button
+        pRipple
+        [rounded]="true"
+        (onClick)="onCompare()"
+        class="w-fit self-center"
+        [label]="compareModality === 'search' ? 'Search' : 'Compare'"
+      />
       }
     </div>
   </div>
 </app-hero>
-<section pAnimateOnScroll enterClass="zoomin" leaveClass="fadeout" class="h-auto flex items-center">
-  <div class="py-20 px-5">
+<section id="discover" class="h-auto flex items-center">
+  <app-fade-in-animation class="py-20 px-5 md:px-24 lg:px-44">
     <app-mat-card
-      [imageProps]="{url: 'harley-davidson-passage-unsplash.jpg', alt: 'A guy sitting in a motorcycle looking at the scenery'}">
-      <div class="flex flex-col gap-4">
+      [imageProps]="{
+        url: 'harley-davidson-passage-unsplash.jpg',
+        alt: 'A guy sitting in a motorcycle looking at the scenery'
+      }"
+    >
+      <div class="flex flex-col gap-4 text-slate-800">
         <h1>Discover Your Ideal Ride</h1>
-        <p>With our powerful comparison tool, you can <b>quickly compare or search different motorcycles</b>. Whether
-          you're a seasoned rider or a first-time buyer, we make it easy to find
-          the perfect motorcycle for your needs.</p>
+        <span class="text-slate-500 flex flex-col gap-2">
+          <p>
+            With our powerful comparison tool, you can
+            <b>quickly compare or search different motorcycles</b>.
+          </p>
+          <p>
+            Whether you're a seasoned rider or a first-time buyer,
+            <b>we make it easy to find the perfect motorcycle</b> for your
+            needs.
+          </p>
+        </span>
       </div>
     </app-mat-card>
-  </div>
+  </app-fade-in-animation>
 </section>
+<section id="how-it-works"></section>
 
-<p-scrollTop/>
+<p-scrollTop />

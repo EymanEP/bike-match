@@ -1,4 +1,4 @@
-import {Component, Host, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {CardModule} from "primeng/card";
 import {DividerModule} from "primeng/divider";
 import {NgIf} from "@angular/common";
@@ -30,7 +30,7 @@ interface ImageProps {
   styles: `
     .matcard {
       border: 2px solid #ebebeb;
-      @apply flex flex-col rounded-xl shadow-lg w-full h-full px-8 py-5 text-slate-700 gap-4 items-center
+      @apply flex flex-col rounded-xl shadow-lg w-full h-full px-8 py-5 gap-4 items-center
       md:flex-row ;
     }
   `

@@ -10,6 +10,7 @@ import {ScrollTopModule} from "primeng/scrolltop";
 import {NgClass} from "@angular/common";
 import {AnimateOnScrollModule} from "primeng/animateonscroll";
 import {MatCardComponent} from "../components/mat-card/mat-card.component";
+import { FadeInAnimationComponent } from "../components/fade-in-animation/fade-in-animation.component";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ import {MatCardComponent} from "../components/mat-card/mat-card.component";
     NgClass,
     AnimateOnScrollModule,
     MatCardComponent,
-  ],
+    FadeInAnimationComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
