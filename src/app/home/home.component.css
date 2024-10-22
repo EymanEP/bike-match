@@ -23,3 +23,7 @@ h1, p {
   shadow-2xl tracking-wide uppercase bg-white outline-none md:py-2 md:px-8 md:text-base hover:bg-slate-200;
 }
 
+.card {
+ @apply rounded-2xl shadow-lg text-slate-500 px-5 py-4 lg:max-w-[350px];
+ border: 2px solid rgba(100, 116, 139, 0.126);
+}

@@ -9,7 +9,7 @@ import {catchError, Observable} from "rxjs";
 })
 export class FetchMotorcycleService {
   private apiUrl = 'https://api.api-ninjas.com/v1/motorcycles/';
-  private apiKey = env.apiKey;
+  private apiKey = env.apiNinjaKey;
 
   constructor(private http: HttpClient) {
   }

@@ -21,7 +21,7 @@ interface ImageProps {
       <div class="flex-1">
         <ng-content></ng-content>
       </div>
-      <p-divider [layout]="isMobile ? 'horizontal' : 'vertical'" />
+      <p-divider [layout]="isMobile ? 'horizontal' : 'vertical'" *ngIf="imageProps" />
       <div class="flex w-full h-full rounded-xl shadow-lg overflow-hidden flex-1" *ngIf="imageProps">
         <img [src]="imageProps.url" [alt]="imageProps.alt" class="object-cover w-full h-auto"/>
       </div>

@@ -53,31 +53,81 @@
     </div>
   </div>
 </app-hero>
-<section id="discover" class="h-auto flex items-center">
-  <app-fade-in-animation class="py-20 px-5 md:px-24 lg:px-44">
-    <app-mat-card
-      [imageProps]="{
-        url: 'harley-davidson-passage-unsplash.jpg',
-        alt: 'A guy sitting in a motorcycle looking at the scenery'
-      }"
-    >
-      <div class="flex flex-col gap-4 text-slate-800">
-        <h1>Discover Your Ideal Ride</h1>
-        <span class="text-slate-500 flex flex-col gap-2">
-          <p>
-            With our powerful comparison tool, you can
-            <b>quickly compare or search different motorcycles</b>.
-          </p>
-          <p>
-            Whether you're a seasoned rider or a first-time buyer,
-            <b>we make it easy to find the perfect motorcycle</b> for your
-            needs.
-          </p>
-        </span>
+<div class="px-5 md:px-24 lg:px-44">
+  <section id="discover" class="h-auto flex items-center">
+    <app-fade-in-animation class="py-20">
+      <app-mat-card
+        [imageProps]="{
+          url: 'harley-davidson-passage-unsplash.jpg',
+          alt: 'A guy sitting in a motorcycle looking at the scenery'
+        }"
+      >
+        <div class="flex flex-col gap-4 text-slate-800">
+          <h1>Discover Your Ideal Ride</h1>
+          <span class="text-slate-500 flex flex-col gap-2">
+            <p>
+              With our powerful comparison tool, you can
+              <b>quickly compare or search different motorcycles</b>.
+            </p>
+            <p>
+              Whether you're a seasoned rider or a first-time buyer,
+              <b>we make it easy to find the perfect motorcycle</b> for your
+              needs.
+            </p>
+          </span>
+        </div>
+      </app-mat-card>
+    </app-fade-in-animation>
+  </section>
+  <section id="how-it-works" class="flex flex-col gap-6 pb-10">
+    <h1 class="text-slate-800 underline">How it works</h1>
+    <div class="flex flex-col gap-5 lg:flex-row">
+      <div class="card">
+        <h3 class="text-slate-800 font-bold">Step 1: Pick Mode</h3>
+        <p>Start by selecting between two modes:</p>
+        <ul>
+          <li>
+            <b>Search Mode:</b> If you're looking to explore a single motorcycle
+            in detail, choose "Search." You'll be able to enter a specific
+            motorcycle model and get comprehensive information about it.
+          </li>
+          <li>
+            <b>Compare Mode:</b> If you're undecided and want to compare
+            multiple motorcycles side-by-side, select "Compare." You can then
+            add up to three motorcycles for a direct comparison of features,
+            specifications, and performance.
+          </li>
+        </ul>
       </div>
-    </app-mat-card>
-  </app-fade-in-animation>
-</section>
-<section id="how-it-works"></section>
+      <div class="card">
+        <h3 class="text-slate-800 font-bold">Step 2: Search the motorcycle</h3>
+        <p>
+          Once you've selected your mode, start typing the model or make of the
+          motorcycle you're interested in. Our intelligent search will suggest
+          relevant options as you type, making it easy to find the exact
+          motorcycle you’re looking for. If you're in Compare Mode, you can add
+          up to three motorcycles to your comparison list.
+        </p>
+      </div>
+      <div class="card">
+        <h3 class="text-slate-800 font-bold">
+          Step 3: Visualize the information
+        </h3>
+        <ul>
+          <li>
+            <b>Search Mode</b>, you'll get a detailed overview of the
+            motorcycle, including specifications, performance stats, design
+            features, and more.
+          </li>
+          <li>
+            <b>In Compare Mode</b>, you’ll see a side-by-side comparison of your
+            selected motorcycles, making it easy to identify the differences in
+            engine power, comfort, design, and price.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
 
 <p-scrollTop />
