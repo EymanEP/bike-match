@@ -1,35 +1,54 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Component, HostListener } from '@angular/core';
-
+import { Component, HostListener, Input } from '@angular/core';
+import { NgIf, CommonModule } from '@angular/common';
 @Component({
   selector: 'app-fade-in-animation',
   standalone: true,
-  imports: [],
+  imports: [NgIf, CommonModule],
   template: `
     <div
-      class="fade-in-component"
-      [@fadeInLeft]="isVisible ? 'visible' : 'hidden'"
+      [class]="
+        direction === 'left'
+          ? 'fade-in-component-left'
+          : 'fade-in-component-right'
+      "
+      [ngClass]="{
+        'fade-in-visible': isVisible,
+        'fade-in-left': direction === 'left',
+        'fade-in-right': direction === 'right'
+      }"
     >
       <ng-content></ng-content>
     </div>
   `,
-  styles: ``,
-  animations: [
-    trigger('fadeInLeft', [
-      state('hidden', style({ opacity: 0, transform: 'translateX(-100%)' })),
-      state('middle', style({ opacity: 50, transform: 'translateX(-50%)' })),
-      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('hidden => visible', [animate('0.5s ease-in')]),
-    ]),
-  ],
+  styles: `
+  .fade-in-component-left {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  }
+
+  .fade-in-component-right {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .fade-in-left {
+    transform-origin: left;
+  }
+
+  .fade-in-right {
+    transform-origin: right;
+  }
+`,
 })
 export class FadeInAnimationComponent {
+  @Input() direction: 'left' | 'right' = 'left';
   isVisible: boolean = false;
 
   @HostListener('window:scroll', ['$event'])
@@ -37,11 +56,7 @@ export class FadeInAnimationComponent {
     const componentPosition = this.getElementPosition();
     const scrollPosition = window.scrollY + window.innerHeight;
 
-    if (scrollPosition >= componentPosition) {
-      this.isVisible = true;
-    } else {
-      this.isVisible = false;
-    }
+    this.isVisible = scrollPosition >= componentPosition;
   }
 
   private getElementPosition(): number {

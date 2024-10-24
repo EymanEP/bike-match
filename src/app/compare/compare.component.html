@@ -1,13 +1,28 @@
-<div class="flex flex-col flex-wrap align-middle justify-center items-center overflow-hidden mt-5">
+<div class="flex flex-col gap-6 px-1 py-5 md:px-24 lg:px-44 justify-center">
+  <h1 class="text-slate-700 lg:self-center">Comparing the following motorcycles: </h1>
+
   @if (selectedMotorcycles.length > 1) {
-    <app-compare-chart [motorcycles]="selectedMotorcycles"></app-compare-chart>
+    <div class="self-center">
+      <app-compare-chart [motorcycles]="selectedMotorcycles"></app-compare-chart>
+    </div>
   }
   @if (selectedMotorcycles.length >= 1) {
     <app-compare-table [motorcycles]="selectedMotorcycles"></app-compare-table>
   }
-
-  <app-bubble-selected (openModal)="setModal(true)"/>
   @if (openModal) {
     <app-motos-motal (closeEmitter)="setModal(false)"/>
   }
+
+  <section class="overflow-hidden">
+    <h1 class="text-center text-2xl font-bold">Where to buy</h1>
+    <div class="flex flex-wrap justify-center gap-4">
+      @for (motorcycle of selectedMotorcycles; track motorcycle.id) {
+        <div class="flex flex-col md:flex-row items-center justify-center gap-2">
+          <h4 class="text-slate-600">{{ motorcycle.name }}</h4>
+          <app-buy-cards [motorcycle]="motorcycle"></app-buy-cards>
+        </div>
+      }
+    </div>
+  </section>
+  <app-bubble-selected (openModal)="setModal(true)"/>
 </div>
