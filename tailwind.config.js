@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      filters: {
+        white: 'invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)',
+      },
       fontFamily: {
         'bricolage-grotesque': ['Bricolage Grotesque', 'sans-serif'],
         'squada-one': ['Squada One', 'sans-serif'],
@@ -20,6 +23,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('tailwindcss-filters'),
     function ({addUtilities}) {
       const shadows = {
         '.text-shadow-none': {

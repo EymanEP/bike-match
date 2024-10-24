@@ -79,16 +79,6 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-home',
         routerLink: '/'
       },
-      {
-        label: 'About',
-        icon: 'pi pi-info-circle',
-        routerLink: '/about'
-      },
-      {
-        label: 'Contact',
-        icon: 'pi pi-envelope',
-        routerLink: '/contact'
-      }
     ]
 
     this.router.events

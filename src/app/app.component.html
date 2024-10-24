@@ -1,5 +1,7 @@
-<main class="top-0 m-0 font-bricolage-grotesque">
-  <app-navbar />
-  <router-outlet></router-outlet>
-  <app-footer />
-</main>
+<div class="top-0 m-0 font-bricolage-grotesque flex flex-col justify-between min-h-dvh">
+  <app-navbar/>
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer/>
+</div>
